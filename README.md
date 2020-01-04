@@ -1,2 +1,2 @@
 # PHPalusedVSo19
-PHP alused kursuse seotud ülesanded.
+PHP alused. Kursusega seotud ülesanded.
