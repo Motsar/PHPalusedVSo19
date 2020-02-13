@@ -1,19 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>ylesanne3</title>
 </head>
 <body>
-<form action="Yl3.php" method="get">
-    sisestage silindri raadius <input type="text" name="silindri_R"><br>
-    sisestage silindri kõrgus <input type="text" name="silindri_H"><br>
-    sisestage kera raadius <input type="text" name="kera"><br>
-    sisestage koonuse raadius <input type="text" name="koonuse_R"><br>
-    sisestage koonuse kõrgus <input type="text" name="koonuse_H"><br>
-    <input type="submit" value="Saada">
-</form>
+<br>
+<hr>
 <?php
+
+
 $sil_raadius = $_GET['silindri_R'];
 $sil_korgus = $_GET['silindri_H'];
 $kera = $_GET['kera'];
@@ -44,5 +40,4 @@ echo 'Koonuse ruumala on: '.koonuseRuumala($koon_raadius, $koon_korgus).'<br>';
 ?>
 </body>
 </html>
-</body>
-</html>
+
