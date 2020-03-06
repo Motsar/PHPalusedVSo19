@@ -1,46 +1,48 @@
 <?php
+
+//Saame sisestatud nime, muudame selle väikesteks tähtedeks ja siis omakorda esimese tähe suureks
 $nimi = $_GET['nimi'];
-$nimi = strtolower($nimi); // nimi on ainult väikestest tähtedest
-$nimi = ucfirst($nimi); // esimene täht on suur
-echo 'Tere, '.$nimi.'!'; // moodustame ja väljastame tervitus
+$nimi = ucfirst(strtolower($nimi));
+echo 'Tere, '.$nimi.'!';
 echo '<hr>';
 
 //Kuna on teada, et PHP käsitleb teksti kui massiivi, siis peaks saama seda tsükli abil nö. tükeldada. Ülesandeks on etteantud teksti iga tähe järgi lisada punkt.
 //Näiteks: sisend–>stalker; väljund–>S.T.A.L.K.E.R.
 
-$sisend = $_GET['sisend'];
-for($indeks = 0; $indeks < strlen($sisend); $indeks++){
-    $symbol = strtoupper($sisend[$indeks]); // teisendame täht suureks
-    echo $symbol.'.'; // väljastame koos punktiga
+$sisend= $_GET['sisend'];
+for($i=0;$i<strlen($sisend);$i++){
+    $symbol = strtoupper($sisend[$i]);
+    echo $symbol.'.';
 }
 echo '<hr>';
 
 //Koosta tekstiväli, mis kuvab kasutaja sisestatud sõnumeid. Kasutaja ropud sõnad asendatakse tärnidega.
 //Näiteks: sisend–>Sa oled täielik noob; väljund–>Sa oled täielik ***
 
-$roppSonad = array('noob', 'kurat'); // roppsõnade massiiv
-$lause = $_GET['lause']; // kasutaja sisend
-$lause = strtolower($lause); // teisendame kõik väikesteks tähtedeks
+$roppsonad = array('kurat','noob','lollakas');
+$lause = $_GET['lause'];
+$lause = strtolower($lause);
 // iga roppsõna kohta, mis meie massiivis on
-foreach ($roppSonad as $roppSona){
+foreach ($roppsonad as $roppsona){
     // moodustame asendussõna vastava pikkusega
     $asendus = '';
-    for($kord = 0; $kord < strlen($roppSona); $kord++){
+    for($kord = 0; $kord < strlen($roppsona); $kord++){
         $asendus .= '*';
     }
-    // otsime, millisest indeksist hakkab pihta roppsõna meie lause sees
-    $roppSonaIndex = strpos($lause, $roppSona, 0);
-    // kui sõna on leitud
-    if($roppSonaIndex !== false ){
-        // teeme vastav asendus
-        $lause = substr_replace($lause, $asendus, $roppSonaIndex, strlen($roppSona));
+    //Leiame lasusest roppsona alguse indeksi
+    $roppSonaIndex = strpos($lause, $roppsona, 0);
+    //kui sona on leitud
+    if($roppSonaIndex !== false){
+        //asendame roppsona
+        $lause = substr_replace($lause, $asendus, $roppSonaIndex, strlen($roppsona));
     }
 }
-// teeme tagasi lause algava suure tähega
+//muudame lause esimese tähe tagasi suureks täheks
 $lause = ucfirst($lause);
-// väljastame lause
+//väljastame lause
 echo $lause;
 echo '<hr>';
+
 
 //Kasutajalt saadud eesnime ja perenime põhjal luuakse talle email lõpuga @hkhk.edu.ee. Kusjuures täpitähed asendatakse ä->a, ö->o, ü->y, õ->o ja kogu email on väikeste tähtedega
 //Näiteks: sisend–>Ülle ja Doos; väljund–>ylle.doos@hkhk.edu.ee
